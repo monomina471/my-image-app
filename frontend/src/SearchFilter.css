@@ -1,0 +1,71 @@
+/* --- 検索・ソートエリアのコンテナ --- */
+.filter-container {
+    display: flex;
+    justify-content: space-between; /* 検索とソートを左右に離す */
+    align-items: center;            /* 上下の中心を揃える */
+    gap: 15px;                      /* 要素同士の隙間 */
+    margin-bottom: 25px;            /* 下の画像リストとの余白 */
+    padding: 15px 20px;
+    background-color: #f9f9f9;      /* 薄いグレーの背景でエリアを明確に */
+    border-radius: 8px;             /* 角を少し丸く */
+    flex-wrap: wrap;                /* 画面が狭い時に折り返す（スマホ対応） */
+}
+
+/* --- 検索フォーム（入力欄 + ボタン） --- */
+.search-form {
+    display: flex;
+    gap: 8px;
+    flex-grow: 1;      /* 余ったスペースを可能な限り使う */
+    max-width: 500px;  /* ただし広がりすぎないように制限 */
+}
+
+/* --- 検索入力欄 --- */
+.search-input {
+    flex-grow: 1;              /* ボタン以外の幅いっぱいを使う */
+    padding: 10px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.2s;
+    outline: none;
+}
+
+.search-input:focus {
+    border-color: #007bff;     /* 入力時に青枠にする */
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+/* --- 検索ボタン --- */
+.search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 10px; 
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap; /* テキストが折り返されないように */
+}
+
+.search-button:hover {
+    background-color: #0056b3; /* ホバー時に少し暗く */
+}
+
+/* --- ソート用プルダウン --- */
+.sort-select {
+    padding: 10px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: white;
+    cursor: pointer;
+    min-width: 140px; /* 極端に細くならないように */
+}
+
+.sort-select:focus {
+    border-color: #007bff;
+    outline: none;
+}

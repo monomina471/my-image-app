@@ -1,0 +1,43 @@
+package com.my_app.demo.Service;
+
+import java.time.Instant;
+import java.util.Optional;
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+
+import com.my_app.demo.Entity.RefreshToken;
+import com.my_app.demo.Repository.RefreshTokenRepository;
+import com.my_app.demo.Repository.UserRepository;
+
+@Service
+public class RefreshTokenService {
+
+    private RefreshTokenRepository refreshTokenRepository;
+    private UserRepository userRepository;
+
+    public RefreshTokenService(RefreshTokenRepository refreshTokenRepository, UserRepository userRepository) {
+        this.refreshTokenRepository = refreshTokenRepository;
+        this.userRepository = userRepository;
+    }
+
+    public RefreshToken createRefreshToken(String email) {
+        RefreshToken refreshToken = new RefreshToken();
+        refreshToken.setUser(userRepository.findByEmail(email).get());
+        refreshToken.setExpiryDate(Instant.now().plusMillis(604800000)); // 例: 7日間
+        refreshToken.setToken(UUID.randomUUID().toString()); // ランダムな文字列
+        return refreshTokenRepository.save(refreshToken);
+    }
+
+    public RefreshToken verifyExpiration(RefreshToken token) {
+        if (token.getExpiryDate().compareTo(Instant.now()) < 0) {
+            refreshTokenRepository.delete(token);
+            throw new RuntimeException("リフレッシュトークンの有効期限が切れています。再ログインしてください。");
+        }
+        return token;
+    }
+
+    public Optional<RefreshToken> findByToken(String token) {
+        return refreshTokenRepository.findByToken(token);
+    }
+}
