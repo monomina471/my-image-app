@@ -9,6 +9,8 @@ function LoginPage() {
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
 
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -19,7 +21,7 @@ function LoginPage() {
         e.preventDefault();
 
         try {
-            const res = await api.post("http://localhost:8080/api/users/login", { email, password },
+            const res = await api.post(`${API_BASE_URL}:8080/api/users/login`, { email, password },
                 {
                     headers: {
                         'Content-Type': 'application/json'

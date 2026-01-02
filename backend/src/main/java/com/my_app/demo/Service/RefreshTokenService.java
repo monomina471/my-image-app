@@ -24,7 +24,7 @@ public class RefreshTokenService {
     public RefreshToken createRefreshToken(String email) {
         RefreshToken refreshToken = new RefreshToken();
         refreshToken.setUser(userRepository.findByEmail(email).get());
-        refreshToken.setExpiryDate(Instant.now().plusMillis(604800000)); // 例: 7日間
+        refreshToken.setExpiryDate(Instant.now().plusMillis(604800000)); // 7日間
         refreshToken.setToken(UUID.randomUUID().toString()); // ランダムな文字列
         return refreshTokenRepository.save(refreshToken);
     }

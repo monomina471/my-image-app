@@ -2,6 +2,8 @@ import api from "../api/axios";
 
 function DeleteButton({ id, onDeleteSuccess }) {
 
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
     const token = localStorage.getItem("JWT")
 
     const handleClick = async (e) => {
@@ -13,7 +15,7 @@ function DeleteButton({ id, onDeleteSuccess }) {
         }
 
         try {
-            await api.delete(`http://localhost:8080/api/images/delete/${id}`, {
+            await api.delete(`${API_BASE_URL}/api/images/delete/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

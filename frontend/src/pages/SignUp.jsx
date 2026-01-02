@@ -9,6 +9,8 @@ function SignUp() {
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
 
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
     const navigate = useNavigate();
 
     const handleClick = async(e) => {
@@ -16,7 +18,7 @@ function SignUp() {
         e.preventDefault();
 
         try{
-            const res = await axios.post("http://localhost:8080/api/users/signup", { email, password, name },
+            const res = await axios.post(`${API_BASE_URL}/api/users/signup`, { email, password, name },
                 {
                     headers: {
                         'Content-Type': 'application/json'

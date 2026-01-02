@@ -8,6 +8,8 @@ function UpLoadPage() {
     const [files, setFiles] = useState([]);
     const [tags, setTags] = useState(["", "", "", "", ""]);
 
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;    
+
     const token = localStorage.getItem("JWT")
 
     //const FormData = required("form-data");
@@ -41,7 +43,7 @@ function UpLoadPage() {
         }
 
         try {
-            await api.create().post("http://localhost:8080/api/images/save", formData, {
+            await api.create().post(`${API_BASE_URL}/api/images/save`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                     Authorization: `Bearer ${token}`

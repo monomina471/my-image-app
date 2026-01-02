@@ -12,6 +12,7 @@ function AppRoutes() {
             <Route path="/LoginPage" element={<LoginPage />} />
             <Route path="/SignUp" element={<SignUp />} />
 
+            {/* ログイン必須 */}
             <Route path="/ImageListPage" element={
                 <ProtectedRoute>
                     <ImageListPage />

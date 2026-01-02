@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,9 +24,13 @@ public class ImageService {
     // ここのコメントは後々消す
     //pom.xmlなどが置いてあるプロジェクトのルートフォルダが基準
     //本番はサーバーやPCの絶対パスを指定
-    private final String UPLOAD_DIR = "../uploads/"; 
+    private final String UPLOAD_DIR; 
 
-    public ImageService(ImageRepository imageRepository) {
+    public ImageService(
+        ImageRepository imageRepository,
+        @Value("${api.uploaded-url}") String uploadDir
+    ) {
+        this.UPLOAD_DIR = uploadDir;
         this.imageRepository = imageRepository;
     }
 
@@ -70,7 +75,8 @@ public class ImageService {
         ImageEntity entity = new ImageEntity();
 
         // フロントエンドから画像を表示できるようにURL（パス）をセット
-        // 実際の運用では http://localhost:8080/images/ファイル名 のようになります
+        // 実際の運用では画像のurlはhttps://minaminachan.com/images/3f1a9c1e-xxxx.jpg のようになる
+        // DBに保存するurlはimages/3f1a9c1e-xxxx.jpgのようになる
         entity.setUrl("/uploaded/" + fileName);
 
         entity.setTags(tags);

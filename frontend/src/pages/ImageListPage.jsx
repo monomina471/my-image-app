@@ -13,6 +13,8 @@ function ImageListPage() {
     const [keyword, setKeyword] = useState("");
     const [sortOrder, setSortOrder] = useState("desc"); //初期値は降順
 
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
     const userId = localStorage.getItem("userId")
     const token = localStorage.getItem("JWT")
 
@@ -22,7 +24,7 @@ function ImageListPage() {
 
     const fetchImages = async () => {
         try {
-            const res = await api.get(`http://localhost:8080/api/images/user/${userId}/search`, {
+            const res = await api.get(`${API_BASE_URL}/api/images/user/${userId}/search`, {
                 params: {
                     keyword: keyword,
                     sort: sortOrder
@@ -48,9 +50,10 @@ function ImageListPage() {
         setImageList(newList);
     }
 
+    //本番ではS3のディレクトリに合わせる
     const getImageUrl = (filepath) => {
         if (!filepath) return "";
-        return filepath.startsWith("http") ? path : `http://localhost:8080/uploaded/${filepath}`;
+        return filepath.startsWith("http") ? path : `${API_BASE_URL}/uploaded/${filepath}`;
     };
 
     useEffect(() => {
