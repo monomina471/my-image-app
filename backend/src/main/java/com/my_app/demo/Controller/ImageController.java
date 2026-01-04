@@ -1,4 +1,4 @@
-package com.my_app.demo.Controller;
+package com.my_app.demo.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.my_app.demo.Entity.ImageEntity;
-import com.my_app.demo.Service.ImageService;
+
+import com.my_app.demo.entity.ImageEntity;
+import com.my_app.demo.service.ImageService;
+
 import java.io.IOException;
 import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;

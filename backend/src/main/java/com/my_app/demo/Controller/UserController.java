@@ -1,10 +1,10 @@
-package com.my_app.demo.Controller;
+package com.my_app.demo.controller;
 
-import com.my_app.demo.Entity.RefreshToken;
-import com.my_app.demo.Entity.UserEntity;
-import com.my_app.demo.Repository.UserRepository;
-import com.my_app.demo.Service.RefreshTokenService;
-import com.my_app.demo.Service.UserService;
+import com.my_app.demo.entity.RefreshToken;
+import com.my_app.demo.entity.UserEntity;
+import com.my_app.demo.repository.UserRepository;
+import com.my_app.demo.service.RefreshTokenService;
+import com.my_app.demo.service.UserService;
 import com.my_app.demo.util.JwtUtil;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,8 +1,10 @@
-package com.my_app.demo.Service;
+package com.my_app.demo.service;
 
 import org.springframework.stereotype.Service;
-import com.my_app.demo.Entity.UserEntity;
-import com.my_app.demo.Repository.UserRepository;
+
+import com.my_app.demo.entity.UserEntity;
+import com.my_app.demo.repository.UserRepository;
+
 import java.util.Optional;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

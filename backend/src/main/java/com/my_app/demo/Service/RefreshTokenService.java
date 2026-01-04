@@ -1,4 +1,4 @@
-package com.my_app.demo.Service;
+package com.my_app.demo.service;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -6,9 +6,9 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.my_app.demo.Entity.RefreshToken;
-import com.my_app.demo.Repository.RefreshTokenRepository;
-import com.my_app.demo.Repository.UserRepository;
+import com.my_app.demo.entity.RefreshToken;
+import com.my_app.demo.repository.RefreshTokenRepository;
+import com.my_app.demo.repository.UserRepository;
 
 @Service
 public class RefreshTokenService {

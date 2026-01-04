@@ -1,8 +1,10 @@
-package com.my_app.demo.Repository;
+package com.my_app.demo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.my_app.demo.Entity.UserEntity;
+
+import com.my_app.demo.entity.UserEntity;
+
 import java.util.Optional;
 
 @Repository
