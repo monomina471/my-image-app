@@ -12,12 +12,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 // 開発環境用画像保存メソッド
-// application.yamlにspring.profiles.active=dev
+// application.yamlにspring.profiles.active=devを記述
 
 @Component
 @Profile("dev")
 public class LocalStorageProvider implements ImageStorageProvider{
-    
+
     // 環境変数から画像保存用ディレクトリのパスを取得
     @Value("${api.uploaded-url}")
     private String uploadDir;

@@ -6,6 +6,8 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
@@ -14,16 +16,16 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    //秘密鍵は本番ではapplication.propertyなどで管理
-    //32文字以上にする
-    private static final String SECRET_KEY = "my_super_secret_key_for_jwt_auth_demo_app";
+    private final Key key;
 
     //トークンの有効期間:24時間
     private static final long EXPIRATION_TIME = 86400000;
     
-    //適切な長さの秘密鍵を生成
-    private final Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
-
+    public JwtUtil(@Value("${jwt.secret-key}") String secretKey) {
+        // ここで Secrets Manager や環境変数から渡された文字列を Key オブジェクトに変換し、適切な長さの秘密鍵を生成
+        this.key = Keys.hmacShaKeyFor(secretKey.getBytes());
+    }
+    
     //トークンの作成
     public String generateToken(String email) {
         return Jwts.builder()

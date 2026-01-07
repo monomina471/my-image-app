@@ -21,7 +21,7 @@ function LoginPage() {
         e.preventDefault();
 
         try {
-            const res = await api.post(`${API_BASE_URL}:8080/api/users/login`, { email, password },
+            const res = await api.post(`${API_BASE_URL}/api/users/login`, { email, password },
                 {
                     headers: {
                         'Content-Type': 'application/json'

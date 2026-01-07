@@ -33,7 +33,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        System.out.println("★ SecurityConfig (JWT版) の設定が読み込まれました！ ★");
+        System.out.println("SecurityConfig (JWT版) の設定が読み込まれました");
 
         http
             // CSRF無効化

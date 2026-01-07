@@ -1,7 +1,10 @@
 import axios from "axios";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+
 const api = axios.create({
-    baseURL: "http://localhost:8080/api",
+    baseURL: `${API_BASE_URL}/api"`,
 });
 
 // レスポンスの割り込み処理

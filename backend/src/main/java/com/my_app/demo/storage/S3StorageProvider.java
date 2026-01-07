@@ -39,12 +39,13 @@ public class S3StorageProvider implements ImageStorageProvider {
     public String save(MultipartFile file) throws IOException {
         String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
 
-        // S3のどこにどのような設定でアップロードするか
+        // S3のどこにどのような設定でアップロードするかのリクエストを作成
         PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                 .bucket(bucketName) // 保存先のバケット名
                 .key(fileName) // S3内でのファイル名(パス含む)
                 .contentType(file.getContentType()) //画像の種類を指定
                 .build(); 
+                
         // ファイルをS3へアップロード
         s3Client.putObject(putObjectRequest, 
             // RequestBody.fromInputStreamはMultipartFileの中身をAWSが送信できる形式に変換
@@ -59,7 +60,7 @@ public class S3StorageProvider implements ImageStorageProvider {
         // urlからS3のキー(ファイル名)だけを抜き出す
         String fileName = url.replace(cloudFrontUrl + "/", "");
 
-        //どのバケットのどのファイルを削除するかの設定
+        //どのバケットのどのファイルを削除するかのリクエストを作成
         DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
                 .bucket(bucketName)
                 .key(fileName)
