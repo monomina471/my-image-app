@@ -29,15 +29,15 @@ function LoginPage() {
                 }
             )
 
-            const { userId, accessToken, refreshToken } = res.data
+            const { userId, accessToken, refreshToken } = res.data;
 
-            localStorage.setItem("userId", userId) //ログイン後に使うためにIDを保存
+            localStorage.setItem("userId", userId); //ログイン後に使うためにIDを保存
 
-            localStorage.setItem("JWT", accessToken) //トークンを保存
+            localStorage.setItem("JWT", accessToken); //トークンを保存
 
-            localStorage.setItem("refreshToken", refreshToken)
+            localStorage.setItem("refreshToken", refreshToken);
 
-            navigate("/ImageListPage") //画像一覧にリダイレクト
+            navigate("/ImageListPage"); //画像一覧にリダイレクト
 
         } catch (error) {
             console.error("Login failed:", error);
@@ -96,7 +96,7 @@ function LoginPage() {
                 <button type="submit">ログイン</button>
                 <br />
                 <br />
-                <a href="http://localhost:5173/SignUp">アカウント登録がまだの場合はこちらから</a>
+                <a href="https://www.minaminachan.com/SignUp">アカウント登録がまだの場合はこちらから</a>
 
             </form>
         </>

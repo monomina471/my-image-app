@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import ImageListPage from "../pages/ImageListPage.jsx"
 import LoginPage from "../pages/LoginPage.jsx"
 import SignUp from "../pages/SignUp.jsx"
@@ -8,6 +8,11 @@ import ProtectedRoute from "../components/ProtectedRoute.jsx";
 function AppRoutes() {
     return (
         <Routes>
+
+            {/* ルートパス "/" にアクセスしたら "/LoginPage" へリダイレクト */}
+            <Route path="/" element={<Navigate to="/ImageListPage" replace />} />
+
+
             {/* ログイン不要 */}
             <Route path="/LoginPage" element={<LoginPage />} />
             <Route path="/SignUp" element={<SignUp />} />

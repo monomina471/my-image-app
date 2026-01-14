@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.my_app.demo.entity.RefreshToken;
 import com.my_app.demo.repository.RefreshTokenRepository;
@@ -21,7 +22,15 @@ public class RefreshTokenService {
         this.userRepository = userRepository;
     }
 
+    @Transactional
     public RefreshToken createRefreshToken(String email) {
+
+        // 既にトークンがある場合は削除
+        refreshTokenRepository.deleteByUser(userRepository.findByEmail(email).get());
+
+        refreshTokenRepository.flush(); 
+
+        // トークンの新規作成
         RefreshToken refreshToken = new RefreshToken();
         refreshToken.setUser(userRepository.findByEmail(email).get());
         refreshToken.setExpiryDate(Instant.now().plusMillis(604800000)); // 7日間
@@ -30,6 +39,8 @@ public class RefreshTokenService {
     }
 
     public RefreshToken verifyExpiration(RefreshToken token) {
+
+        //期限の検証
         if (token.getExpiryDate().compareTo(Instant.now()) < 0) {
             refreshTokenRepository.delete(token);
             throw new RuntimeException("リフレッシュトークンの有効期限が切れています。再ログインしてください。");

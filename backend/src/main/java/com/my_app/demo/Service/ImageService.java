@@ -48,6 +48,7 @@ public class ImageService {
         }
     }
 
+    // 画像の保存処理は開発環境と本番環境ごとに@Profileで切り替える
     public ImageEntity saveImage(MultipartFile file, String tags, Long userId) throws IOException {
 
         // 保存処理はproviderに任せる
@@ -65,7 +66,7 @@ public class ImageService {
 
         // 削除処理もproviderに任せる
         ImageEntity image = imageRepository.findById(id).orElseThrow();
-        
+
         storageProvider.delete(image.getUrl());
         imageRepository.deleteById(id);
     }

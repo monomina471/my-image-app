@@ -22,7 +22,7 @@ api.interceptors.response.use(
             try {
                 // リフレッシュトークンを使って新しいJWTを要求
                 const refreshToken = localStorage.getItem("refreshToken");
-                const response = await axios.post("http://localhost:8080/api/users/refresh", {
+                const response = await axios.post(`${API_BASE_URL}/api/users/refresh`, {
                     token: refreshToken
                 });
 

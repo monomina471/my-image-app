@@ -1,0 +1,4 @@
+spring:
+    config:
+        import:
+            - aws-secretsmanager:4471yu4471-image-application/s3/MySQL/jwt

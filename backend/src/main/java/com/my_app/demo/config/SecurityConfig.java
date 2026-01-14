@@ -77,7 +77,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOriginPatterns(List.of("http://localhost:5173", "http://localhost:3000")); // 3000も念のため追加
+        config.setAllowedOriginPatterns(List.of("http://localhost:5173", "http://localhost:3000", "https://www.minaminachan.com")); // 3000も念のため追加
         config.setAllowedMethods(List.of("*"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);

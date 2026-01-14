@@ -70,6 +70,7 @@ public class UserController {
             // トークンとユーザー情報をフロントエンドへ返す
             return ResponseEntity.ok(response);
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }

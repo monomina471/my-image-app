@@ -52,6 +52,7 @@ public class S3StorageProvider implements ImageStorageProvider {
             // InputStreamからHTTPリクエストのボディを生成
             RequestBody.fromInputStream(file.getInputStream(), file.getSize()));
 
+        // 画像のurlはcloudfrontのurl+S3内でのファイルのフルパスとなる
         return cloudFrontUrl + "/" + fileName;
     }
 
