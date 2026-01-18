@@ -1,17 +1,18 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import ImageListPage from "../pages/ImageListPage.jsx"
 import LoginPage from "../pages/LoginPage.jsx"
 import SignUp from "../pages/SignUp.jsx"
 import UploadPage from "../pages/UploadPage.jsx"
 import ProtectedRoute from "../components/ProtectedRoute.jsx";
+import RootRedirect from "../components/RootRedirect.jsx";
+
 
 function AppRoutes() {
     return (
         <Routes>
 
-            {/* ルートパス "/" にアクセスしたら "/LoginPage" へリダイレクト */}
-            <Route path="/" element={<Navigate to="/ImageListPage" replace />} />
-
+            {/* ルートパス "/" にアクセスしたら "/LoginPage" へ明示的にリダイレクト */}
+            <Route path="/" element={<RootRedirect />} />
 
             {/* ログイン不要 */}
             <Route path="/LoginPage" element={<LoginPage />} />

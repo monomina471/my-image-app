@@ -53,7 +53,7 @@ public class SecurityConfig {
                 .requestMatchers("/uploaded/**").permitAll()
 
                 // (C) ログイン・登録のエンドポイントを許可
-                .requestMatchers("/api/users/signup", "/api/users/login", "/api/users/refresh").permitAll()
+                .requestMatchers("/api/users/signup", "/api/users/login", "/api/users/refresh", "/api/health").permitAll()
                 
                 // (D) 画像のリスト取得(GET)だけは許可したい場合（お好みで）
                 // .requestMatchers(HttpMethod.GET, "/api/images/**").permitAll()

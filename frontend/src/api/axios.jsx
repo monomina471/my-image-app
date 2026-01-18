@@ -4,7 +4,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 const api = axios.create({
-    baseURL: `${API_BASE_URL}/api"`,
+    baseURL: `${API_BASE_URL}/api`,
 });
 
 // レスポンスの割り込み処理
@@ -15,8 +15,8 @@ api.interceptors.response.use(
     async (error) => {
         const originalRequest = error.config;
 
-        // エラーが403(権限なし)で、まだ再試行していない場合
-        if (error.response && error.response.status === 403 && !originalRequest._retry) {
+        // エラーが403(権限なし)・500(サーバー側エラー)で、まだ再試行していない場合
+        if (error.response && (error.response.status === 403 || error.response.status === 500) && !originalRequest._retry) {
             originalRequest._retry = true; // 無限ループ防止フラグ
 
             try {

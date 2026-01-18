@@ -53,7 +53,7 @@ function ImageListPage() {
     //本番ではS3のディレクトリに合わせる
     const getImageUrl = (filepath) => {
         if (!filepath) return "";
-        return filepath.startsWith("http") ? path : `${API_BASE_URL}/uploaded/${filepath}`;
+        return filepath.startsWith("http") ? filepath : `${API_BASE_URL}/uploaded/${filepath}`;
     };
 
     useEffect(() => {
@@ -105,7 +105,7 @@ function ImageListPage() {
 
             {/*拡大表示ウインドウ*/}
             {selectedImage && (
-                <div className="modal-overlay" onClick={() => selectedImage(null)}>
+                <div className="modal-overlay" onClick={() => setSelectedImage(null)}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <button className="modal-close-btn" onClick={() => setSelectedImage(null)}>
                             ✕

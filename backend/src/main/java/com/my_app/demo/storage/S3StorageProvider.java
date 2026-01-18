@@ -24,7 +24,7 @@ public class S3StorageProvider implements ImageStorageProvider {
     // S3を操作するためのS3クライアントを用意
     private final S3Client s3Client;
 
-    @Value("${aws.s3.bucket-name}")
+    @Value("${api.s3.bucket-name}")
     private String bucketName;
 
     @Value("${api.cloudfront.url}")
@@ -38,11 +38,12 @@ public class S3StorageProvider implements ImageStorageProvider {
     @Override
     public String save(MultipartFile file) throws IOException {
         String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+        String s3Key = "uploaded/" + fileName;
 
         // S3のどこにどのような設定でアップロードするかのリクエストを作成
         PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                 .bucket(bucketName) // 保存先のバケット名
-                .key(fileName) // S3内でのファイル名(パス含む)
+                .key(s3Key) // S3内でのファイル名(パス含む)
                 .contentType(file.getContentType()) //画像の種類を指定
                 .build(); 
                 
@@ -53,7 +54,7 @@ public class S3StorageProvider implements ImageStorageProvider {
             RequestBody.fromInputStream(file.getInputStream(), file.getSize()));
 
         // 画像のurlはcloudfrontのurl+S3内でのファイルのフルパスとなる
-        return cloudFrontUrl + "/" + fileName;
+        return cloudFrontUrl + "/uploaded/" + fileName;
     }
 
     @Override

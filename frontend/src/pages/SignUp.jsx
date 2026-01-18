@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Header from "../components/Header";
-import axios from 'axios';
+import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {
@@ -18,7 +18,7 @@ function SignUp() {
         e.preventDefault();
 
         try{
-            const res = await axios.post(`${API_BASE_URL}/api/users/signup`, { email, password, name },
+            const res = await api.post(`${API_BASE_URL}/api/users/signup`, { email, password, name },
                 {
                     headers: {
                         'Content-Type': 'application/json'
