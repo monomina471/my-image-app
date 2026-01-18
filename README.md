@@ -20,7 +20,8 @@ https://www.minaminachan.com/
 - REST API
 
 ### インフラ / クラウド
-<img width="2011" height="1161" alt="インフラ構成図 drawio" src="https://github.com/user-attachments/assets/0fd2f298-242b-43b4-898e-cc05ca319924" />
+<img width="1681" height="1161" alt="インフラ構成図 drawio" src="https://github.com/user-attachments/assets/1bac01fe-7e3b-4b9c-853b-611f0ff577b5" />
+
 - AWS
   - S3
   - CloudFront
