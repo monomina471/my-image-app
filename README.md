@@ -3,19 +3,35 @@
 ## 概要
 画像をアップロード・検索・削除できるWebアプリです。
 
-## 使用技術
-- Frontend: React, Vite
-- Backend: Spring Boot
-- DB: MySQL (RDS)
-- Auth: JWT
-- Infra: AWS (EB, RDS, S3, CloudFront)
+### フロントエンド
+- React
+- Vite
+- JavaScript
+- HTML / CSS
 
-## 機能
-- ユーザー登録 / ログイン
-- 画像アップロード
-- タグ検索
-- 画像削除
+### バックエンド
+- Java
+- Spring Boot
+- Spring Data JPA
+- Hibernate
+- REST API
 
-## デプロイ構成
-- Frontend: S3 + CloudFront
-- Backend: Elastic Beanstalk
+### インフラ / クラウド
+- AWS
+  - S3
+  - CloudFront
+  - Route 53
+  - ACM
+  - Elastic Beanstalk
+  - EC2
+  - ALB
+  - RDS（MySQL）
+  - Secrets Manager
+  - VPC / VPC Endpoint
+
+### データベース
+- MySQL（Amazon RDS）
+
+### 開発環境・その他
+- Docker
+- Git / GitHub
