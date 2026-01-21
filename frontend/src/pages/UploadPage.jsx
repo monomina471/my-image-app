@@ -96,8 +96,6 @@ function UpLoadPage() {
                 <div className="upload-card">
                     <h2 className="upload-title">画像をアップロード</h2>
 
-
-
                     <form onSubmit={handleSubmit}>
                         <div className="dropzone-wrapper">
                             <DragDropZone
@@ -107,7 +105,7 @@ function UpLoadPage() {
                         </div>
 
                         <div className="tag-section">
-                            <p className="tag-title">タグ入力（最大5つ）</p>
+                            <h3 className="tag-title">タグ入力（最大5つ）</h3>
 
                             {tags.map((tag, index) => (
                                 <input

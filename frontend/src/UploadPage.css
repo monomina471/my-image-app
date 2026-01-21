@@ -1,72 +1,71 @@
 .upload-page {
-  min-height: 100vh;
-  background: linear-gradient(180deg, #fff7ed, #ffedd5);
-  display: flex;
-  justify-content: center;
-  padding-top: 40px;
+    min-height: calc(100vh - 60px);
+    background: linear-gradient(180deg, #fff7ed, #ffedd5);
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
 }
 
 .upload-card {
-  background: #ffffff;
-  width: 100%;
-  max-width: 600px;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    background:  #ffffff;
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .upload-title {
-  text-align: center;
-  color: #7c2d12;
-  margin-bottom: 20px;
+    padding: 30px;
+    text-align: center;
+    color: #7c2d12;
+    margin-bottom: 20px;
 }
 
 .tag-section {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .tag-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
 }
 
 .upload-button {
-  width: 100%;
-  margin-top: 20px;
-  padding: 12px;
-  background: #fb923c;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background: #fb923c;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .dropzone-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
 }
 
 .tag-chip-list {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
 .tag-chip {
-  background: #fde68a;
-  color: #92400e;
-  padding: 6px 10px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-size: 14px;
+    background: #fde68a;
+    color: #92400e;
+    padding: 6px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 14px;
 }
 
 .tag-chip:hover {
-  background: #fcd34d;
+    background: #fcd34d;
 }
-
