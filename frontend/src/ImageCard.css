@@ -10,23 +10,34 @@
     background-color: antiquewhite;
     border-radius: 8px;
     width: 200px;
-    height: 250px;
+    min-height: 300px; 
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    
+    display: flex; 
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; 
+    padding-bottom: 12px; 
+    overflow: hidden; 
 }
 
-.img{
+.img {
     width: 100%;
-    height: 180px;
+    height: 140px; 
     object-fit: cover;
-
 }
 
-.tags{
+.tags {
     padding: 8px;
     font-size: 14px;
     color: #555;
     text-align: center;
+    word-break: break-all; 
+    flex-grow: 1; 
+}
+
+.card > div:nth-child(3) {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 8px;
 }

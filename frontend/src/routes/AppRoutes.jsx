@@ -20,14 +20,14 @@ function AppRoutes() {
 
             {/* ログイン必須 */}
             <Route path="/ImageListPage" element={
-                // <ProtectedRoute>
+                <ProtectedRoute>
                     <ImageListPage />
-                // </ProtectedRoute> 
+                </ProtectedRoute> 
             } />
             <Route path="/UploadPage" element={
-                // <ProtectedRoute>
+                <ProtectedRoute>
                     <UploadPage />
-                // </ProtectedRoute>
+                </ProtectedRoute>
             } />
 
         </Routes>
