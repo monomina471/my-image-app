@@ -57,4 +57,12 @@ public class ImageController {
         }
     }
 
+    @GetMapping("/tags/{userId}/sample")
+    public ResponseEntity<List<String>> getSampleTags(@PathVariable Long userId) {
+        // 最大10個のランダムなタグをリストで返す
+        List<String> randomTags = imageService.getRandomSampleTags(userId, 10);
+        return ResponseEntity.ok(randomTags);
+    }
+    
+
 }

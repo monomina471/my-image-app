@@ -3,8 +3,9 @@ import Header from "../components/Header";
 import ImageCard from "../components/ImageCard";
 import '../ImageCard.css'
 import '../ImageClick.css'
-import '../SearchFilter.css'
+import '../ImageListPage.css'
 import api from '../api/axios';
+
 
 function ImageListPage() {
 
@@ -64,7 +65,7 @@ function ImageListPage() {
         <>
             <Header />
 
-            <div className="filter-container">
+            <div className="filter-container warm">
                 <form onSubmit={handleSearch} className="search-form">
                     <input
                         type="text"
@@ -77,29 +78,44 @@ function ImageListPage() {
                     <button type="submit" className="search-button">
                         検索
                     </button>
+
+                    <button
+                        type="button"
+                        className="reset-button"
+                        onClick={() => {
+                            setKeyword("");
+                            fetchImages();
+                        }}
+                    >
+                        リセット
+                    </button>
                 </form>
-            </div>
 
-            <select
-                className="sort-select"
-                value={sortOrder}
-                onChange={(e) => setSortOrder(e.target.value)}
-            >
-                <option value="desc">新しい順 ↓</option>
-                <option value="asc">古い順 ↑</option>
-            </select>
 
-            <div style={{ padding: "20px" }}>
-                <h2>画像一覧</h2>
-                <div className="image-list">
-                    {imageList.map((image) => (
-                        <ImageCard
-                            key={image.id}
-                            image={image}
-                            onDeleteSuccess={handleDeleteSuccess}
-                            handleClick={() => setSelectedImage(image)}
-                            getImageUrl={getImageUrl}
-                        />))}
+                <select
+                    className="sort-select"
+                    value={sortOrder}
+                    onChange={(e) => setSortOrder(e.target.value)}
+                >
+                    <option value="desc">新しい順 ↓</option>
+                    <option value="asc">古い順 ↑</option>
+                </select>
+
+
+                <div className="image-content">
+                    <h2 className="page-title">画像一覧</h2>
+
+                    <div className="image-list">
+                        {imageList.map((image) => (
+                            <ImageCard
+                                key={image.id}
+                                image={image}
+                                onDeleteSuccess={handleDeleteSuccess}
+                                handleClick={() => setSelectedImage(image)}
+                                getImageUrl={getImageUrl}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
 

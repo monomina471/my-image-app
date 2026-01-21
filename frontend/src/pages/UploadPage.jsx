@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DragDropZone from "../components/DragDropZone";
 import Header from "../components/Header";
 import api from "../api/axios";
+import '../UploadPage.css'
 
 function UpLoadPage() {
 
     const [files, setFiles] = useState([]);
     const [tags, setTags] = useState(["", "", "", "", ""]);
+    const [sampleTags, setSampleTags] = useState([]);
 
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;    
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     const token = localStorage.getItem("JWT")
 
@@ -61,38 +63,84 @@ function UpLoadPage() {
 
     };
 
+    useEffect(() => {
+        const fetchSampleTags = async () => {
+            const userId = localStorage.getItem("userId");
+
+            const res = await api.get(`${API_BASE_URL}/api/images/tags/${userId}/sample`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+            setSampleTags(res.data); // タグのリストを格納
+        };
+        fetchSampleTags();
+    }, []);
+
+    const addTagFromSample = (tag) => {
+        const index = tags.findIndex(t => t === "");
+        if (index === -1) return; // 空きなし
+
+        const newTags = [...tags];
+        newTags[index] = tag;
+        setTags(newTags);
+    };
+
     return (
         <>
             <Header />
-            <form onSubmit={(e) => {
-                handleSubmit(e);
-            }}>
-                <DragDropZone onFilesSelected={(selected) => setFiles(selected)}
-                files={files} />
-                <br />
-                <div style={{ marginTop: "20px" }}>
-                    <p>タグ入力 (最大5つ)</p>
-                    {/* map関数を使って5つのinputを自動生成 */}
-                    {tags.map((tag, index) => (
-                        <div key={index} style={{ marginBottom: "8px" }}>
-                            <label htmlFor={`tag-${index}`} style={{ marginRight: "10px" }}>
-                                タグ {index + 1}:
-                            </label>
-                            <input
-                                type="text"
-                                id={`tag-${index}`}
-                                value={tag}
-                                placeholder={`タグ ${index + 1} を入力`}
-                                onChange={(e) => handleTagChange(index, e.target.value)}
+
+            <div className="upload-page">
+                <div className="upload-card">
+                    <h2 className="upload-title">画像をアップロード</h2>
+
+
+
+                    <form onSubmit={handleSubmit}>
+                        <div className="dropzone-wrapper">
+                            <DragDropZone
+                                onFilesSelected={(selected) => setFiles(selected)}
+                                files={files}
                             />
                         </div>
-                    ))}
-                </div>
-                <br />
-                <br />
-                <button type="submit">登録</button>
-            </form>
 
+                        <div className="tag-section">
+                            <p className="tag-title">タグ入力（最大5つ）</p>
+
+                            {tags.map((tag, index) => (
+                                <input
+                                    key={index}
+                                    type="text"
+                                    className="tag-input"
+                                    placeholder={`タグ ${index + 1}`}
+                                    value={tag}
+                                    onChange={(e) => handleTagChange(index, e.target.value)}
+                                />
+                            ))}
+                        </div>
+
+                        <button type="submit">登録</button>
+
+                        <div className="tag-sample">
+                            <p>あなたが使っているタグは......</p>
+                            <div className="tag-chip-list">
+                                {sampleTags.map(tag => (
+                                    <span
+                                        key={tag}
+                                        className="tag-chip"
+                                        onClick={() => addTagFromSample(tag)}
+                                    >
+                                        #{tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
         </>
     )
 }

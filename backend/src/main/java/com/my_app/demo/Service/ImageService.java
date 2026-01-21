@@ -4,8 +4,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
@@ -69,5 +74,28 @@ public class ImageService {
 
         storageProvider.delete(image.getUrl());
         imageRepository.deleteById(id);
+    }
+
+    public List<String> getRandomSampleTags(Long userId, int limit) {
+        // 全画像取得
+        List<ImageEntity> images = imageRepository.findByUserId(userId);
+
+        //タグ文字列を抽出、分解して一つのリストにまとめる
+        Set<String> uniqueTags = images.stream()
+            .map(ImageEntity::getTags) // :: メソッド参照でtagsフィールドを取得
+            .filter(t -> t != null && !t.isEmpty()) // nullや空文字を除外
+            .flatMap(t -> Arrays.stream(t.split(","))) // カンマで分割
+            .map(String::trim) // 前後の空白を除外
+            .filter(t -> !t.isEmpty()) // 空文字を再度除外
+            .collect(Collectors.toSet()); // 重複を削除
+            
+        // セットをリストに変換してシャッフル
+        List<String> tagList = new ArrayList<>(uniqueTags);
+        Collections.shuffle(tagList);
+
+        // 指定された数だけ取り出す
+        return tagList.stream()
+        .limit(limit)
+        .collect(Collectors.toList());
     }
 }

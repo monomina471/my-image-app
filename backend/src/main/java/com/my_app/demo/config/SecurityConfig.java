@@ -22,7 +22,7 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    // ★ 1. JWTフィルターを使うために宣言
+    // JWTフィルターを使うために宣言
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     // コンストラクタで注入
@@ -32,8 +32,6 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-        System.out.println("SecurityConfig (JWT版) の設定が読み込まれました");
 
         http
             // CSRF無効化
@@ -55,20 +53,17 @@ public class SecurityConfig {
                 // (C) ログイン・登録のエンドポイントを許可
                 .requestMatchers("/api/users/signup", "/api/users/login", "/api/users/refresh", "/api/health").permitAll()
                 
-                // (D) 画像のリスト取得(GET)だけは許可したい場合（お好みで）
-                // .requestMatchers(HttpMethod.GET, "/api/images/**").permitAll()
-
                 // requestMatchersで指定したもの以外全てのリクエストが認証を必要とする
                 .anyRequest().authenticated()
             )
 
-            // ★ 3. JWTフィルターを、標準の認証フィルターの「前」に追加
+            // JWTフィルターを、標準の認証フィルターの前に追加
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
-    // ★ 4. ログインAPIで使うために AuthenticationManager を公開
+    // ログインAPIで使うために AuthenticationManager を公開
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();

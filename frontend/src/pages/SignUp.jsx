@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "../components/Header";
 import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
+import '../authpage.css'
 
 function SignUp() {
 
@@ -34,9 +35,9 @@ function SignUp() {
             console.error("Signup failed:", error)
 
             if(error.response.status === 409 || error.response.status === 500){
-                console.log("このメールアドレスは既に使用されています");
+                alert("このメールアドレスは既に使用されています");
             } else {
-                console.log("サーバーエラーが発生しました");
+                alert("サーバーエラーが発生しました");
             }
         }
     }
@@ -44,9 +45,12 @@ function SignUp() {
     return (
         <>
             <Header />
-            <p>ユーザー登録</p>
-            <form onSubmit={handleClick}>
-                <label htmlFor="name" id="name">Name:</label>
+                        <div className="auth-page">
+            <div className="auth-card">
+            <h2>ユーザー登録</h2>
+            <form onSubmit={handleClick} >
+                <div className="form-group">
+                <label htmlFor="name" id="name">ユーザー名</label>
                 <input
                     type="text"
                     id="name"
@@ -58,8 +62,10 @@ function SignUp() {
                     placeholder="ユーザー名"
                     onChange={(e) => setName(e.target.value)}
                 />
-                <br />
-                <label htmlFor="password" id="password">Password:</label>
+                </div>
+
+                <div className="form-group">
+                <label htmlFor="password" id="password">パスワード</label>
                 <input type="password"
                     id="password"
                     name="password"
@@ -69,8 +75,9 @@ function SignUp() {
                     placeholder="パスワード(8文字以上)"
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <br />
-                <label htmlFor="email" id="email">Email:</label>
+                </div>
+                <div className="form-group">
+                <label htmlFor="email" id="email">メールアドレス</label>
                 <input type="email"
                     id="email"
                     name="email"
@@ -79,9 +86,16 @@ function SignUp() {
                     placeholder="メールアドレス"
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                <br />
-                <button type="submit">登録</button>
+                </div>
+                <button type="submit" className="auth-button">
+                    登録
+                </button>
             </form>
+                                <div className="auth-link">
+                        <a href="/LoginPage">アカウント登録済の場合はこちら</a>
+                    </div>
+            </div>
+            </div>
 
 
 

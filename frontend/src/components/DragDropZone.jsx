@@ -46,8 +46,8 @@ function DragDropZone({ onFilesSelected, files }) {
                         style={imgStyle} />
                 ) : (
                     isDragActive ?
-                        <p style={{textAlign: "center"}}>ファイルをドロップ ...</p> :
-                        <p style={{textAlign: "center"}}>ファイルをここにドラッグするか、クリックしてファイルを選択</p>
+                        <p style={{textAlign: "center"}}>ドロップ!</p> :
+                        <p style={{textAlign: "center"}}>ファイルをここにドラッグするか<br />クリックしてファイルを選択</p>
                 )
             }
         </div>

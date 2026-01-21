@@ -1,18 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import '../Header.css';
-import { useState } from "react";
 
 function Header() {
 
-    //const [menuOpen, setMenuOpen] = useState(false);
-
     const navigate = useNavigate();
-
-    //const toggleFunction = () => {setMenuOpen((prevState) => !prevState)}
 
     const logout = () => {
         localStorage.removeItem("userId");
-        navigate("/LoginPage")
+        localStorage.removeItem("JWT");
+        localStorage.removeItem("refreshToken");
+        navigate("/LoginPage", { state: { flashMessage: "ログアウトしました。"}})
     }
 
     return (
