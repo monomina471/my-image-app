@@ -27,6 +27,7 @@ https://www.minaminachan.com/
 ### 画像をPOSTメソッドで送信する処理の実装
 画像を送信する際のContent-Typeの設定に苦労しました。文字列の場合はapplication/jsonを使えば解決しますが、このアプリの場合は画像ファイル・タグ。ユーザーIDを同時に送信する必要があるため、どのようなContent-Typeを使用するのが良いか、非常に悩みました。
 → ネット記事やAIを使って調べた結果、FormDataオブジェクトに送信する情報を詰め込み、multipart/form-data形式でバックエンドに送信して@RequestParamでデータを取り出すという形に落ち着きました。
+
 参考にした記事 : https://qiita.com/natuuu0831/items/8b392ad47133b575b620
 
 ### Elactic Beanstalkの環境にロードバランサ―を導入し、ACMの証明書を適用させるまでの流れ
