@@ -48,7 +48,6 @@ https://www.minaminachan.com/
 - Spring Boot
 - Spring Data JPA
 - Hibernate
-- REST API
 
 ### インフラ / クラウド
 <img width="1681" height="1161" alt="インフラ構成図 drawio" src="https://github.com/user-attachments/assets/1bac01fe-7e3b-4b9c-853b-611f0ff577b5" />
