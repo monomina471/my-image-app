@@ -71,11 +71,3 @@ https://www.minaminachan.com/
 - Docker
 - Git / GitHub
 
-## 製作者プロフィール
-- 氏名：シシナイ ユウ
-- 職種：社会人
-- 学習内容：
-  - Java / Spring Boot
-  - React
-  - AWS
-
